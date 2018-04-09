@@ -6,14 +6,15 @@ function findMatching (drivers, name) {
     });
   });
 
-
-function fuzzyMatch(drivers, letters) {
-  return drivers.filter (function (driver){
-  return driver.startsWith(letters)
-    })
+function fuzzyMatch(drivers, partialName) {
+  let lengthOfName = partialName.length;
+  return drivers.filter(function (driverName) {
+    return driverName.slice(0, lengthOfName) === partialName;
+  });
+};
 
 function matchName(drivers, name) {
-return drivers.filter (function (driverObj) {
- return driverObj.name.toLowerCase() === name.toLowerCase();
+return drivers.filter (function (driver) {
+ return driver.name.toLowerCase() === name.toLowerCase();
     });
-}
+};
